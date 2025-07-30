@@ -2,7 +2,7 @@
 
 ## 📋 **VISÃO GERAL**
 
-Esta base de conhecimento foi criada a partir do curso **RMBC II (Research, Mechanism, Brief, Copy)** de Stefan Georgi, transformando o conteúdo em **8 volumes temáticos** otimizados para o agente CopyOS™.
+Esta base de conhecimento foi criada a partir do curso **RMBC II (Research, Mechanism, Brief, Copy)** de Stefan Georgi, transformando o conteúdo em **9 volumes temáticos** otimizados para o agente CopyOS™.
 
 ## 🎯 **OBJETIVO**
 
@@ -58,6 +58,12 @@ Equipar o CopyOS™ com conhecimento profundo e acionável para gerar copy de al
 - **Conceitos**: Meta Ads, Google Ads, Native Advertising, CRO
 - **Status**: Pendente
 
+### **Volume 09: CRO e Otimização** ✅
+- **Módulos**: 16-BONUSES (CRO)
+- **Foco**: Otimização de conversão e metodologias de teste
+- **Conceitos**: A/B Testing, CRO, Otimização de Landing Pages
+- **Status**: **CONCLUÍDO**
+
 ## 🛠️ **METODOLOGIA DE CRIAÇÃO**
 
 ### **Processo de 2 Etapas:**
@@ -97,7 +103,7 @@ Cada volume segue a estrutura:
 
 ## 🚀 **COMO USAR COM O COPYOS™**
 
-1. **Upload dos Arquivos**: Fazer upload dos 8 arquivos `.md` para o CopyOS™
+1. **Upload dos Arquivos**: Fazer upload dos 9 arquivos `.md` para o CopyOS™
 2. **Configuração**: Configurar o agente para usar esta base de conhecimento
 3. **Teste**: Solicitar tarefas como "Escreva um VSL para [produto]"
 4. **Refinamento**: O agente deve aplicar automaticamente as metodologias do Stefan Georgi
