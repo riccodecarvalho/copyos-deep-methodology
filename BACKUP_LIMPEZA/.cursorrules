@@ -1,0 +1,41 @@
+# COPYOS™ - Cursor Agent Configuration
+
+## Project Overview
+This is a copywriting system based on Stefan Georgi's RMBC II methodology, implemented with deep methodology and automated QA.
+
+## Key Files to Focus On
+- `01_BASE_DE_CONHECIMENTO/` - Main knowledge base with 8 volumes
+- `02_PROMPTS/` - Optimized prompts for AI models
+- `03_SCRIPTS/` - Automation scripts for processing volumes
+- `blueprints/` - Structured blueprints for each volume
+- `qa/` - Quality assurance reports
+
+## Methodology
+- **Two-Pass Pipeline**: Canonical extraction + Synthesis with rigid metas
+- **Automated QA**: Validation with 100/100 score requirements
+- **Deep Methodology**: Ensures content depth and actionable insights
+
+## Quality Standards
+Each volume must have:
+- ≥3 literal citations (verified)
+- ≥5 KPIs with formulas and thresholds
+- ≥3 actionable templates
+- ≥2 anti-examples with solutions
+- Score 100/100 in automated QA
+
+## File Structure
+- Volumes 01-08 are complete and validated
+- All scripts are functional and tested
+- Prompts are optimized for ChatGPT, Gemini, and other LLMs
+
+## When Working on This Project
+1. Always maintain the deep methodology standards
+2. Use the existing scripts for automation
+3. Validate any changes with the QA system
+4. Keep the structure organized and documented
+5. Focus on actionable, practical content
+
+## Important Notes
+- Large files (evidencias/, 04_DADOS_BRUTOS/) are gitignored
+- The project is ready for production use
+- All volumes have been processed with 100/100 quality scores 

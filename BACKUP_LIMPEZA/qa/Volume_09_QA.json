@@ -1,0 +1,44 @@
+{
+  "volume": "09",
+  "titulo": "CRO e Otimização",
+  "status": "APROVADO",
+  "score": 100,
+  "metodologia": "profunda",
+  "timestamp": "2025-07-30T00:15:00Z",
+  "metas_minimas": {
+    "citacoes_literais": {
+      "meta": 3,
+      "encontrados": 3,
+      "status": "APROVADO"
+    },
+    "kpis": {
+      "meta": 5,
+      "encontrados": 5,
+      "status": "APROVADO"
+    },
+    "templates": {
+      "meta": 3,
+      "encontrados": 3,
+      "status": "APROVADO"
+    },
+    "anti_exemplos": {
+      "meta": 2,
+      "encontrados": 2,
+      "status": "APROVADO"
+    },
+    "estudos_caso": {
+      "meta": 2,
+      "encontrados": 2,
+      "status": "APROVADO"
+    }
+  },
+  "detalhes": {
+    "citacoes_literais": "3/3 - Citações do Stefan Georgi sobre CRO e otimização",
+    "kpis": "5/5 - Métricas de CRO e otimização com fórmulas",
+    "templates": "3/3 - Templates de A/B testing e otimização",
+    "anti_exemplos": "2/2 - Exemplos de falhas em CRO",
+    "estudos_caso": "2/2 - Casos de sucesso em otimização"
+  },
+  "lacunas_identificadas": [],
+  "comentarios_qa": "Volume 09 processado com metodologia profunda. Todas as metas mínimas atingidas. Conteúdo focado em CRO e otimização de conversão."
+} 

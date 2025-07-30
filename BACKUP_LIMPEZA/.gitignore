@@ -1,0 +1,114 @@
+# Arquivos do sistema
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Arquivos temporários
+*.tmp
+*.temp
+*.log
+*.bak
+*.swp
+*.swo
+
+# Arquivos de relatório temporários
+relatorio_processamento_completo_*.json
+relatorio_*.json
+
+# Arquivos ZIP desnecessários
+*.zip
+
+# Arquivos de dados brutos (muito grandes)
+04_DADOS_BRUTOS/texto_bruto/*.txt
+
+# Material original (muito grande - não subir para GitHub)
+05_MATERIAL_ORIGINAL/*
+!05_MATERIAL_ORIGINAL/.gitkeep
+!05_MATERIAL_ORIGINAL/README_MATERIAL_ORIGINAL.md
+
+# Arquivos de evidências (muito grandes)
+evidencias/*.json
+
+# Arquivos de backup
+*_backup/
+*_antigo/
+*_old/
+
+# Arquivos de configuração local
+.env
+.env.local
+.env.production
+
+# IDEs e editores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
+
+# PEP 582
+__pypackages__/
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json 
