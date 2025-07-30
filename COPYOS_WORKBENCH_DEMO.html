@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COPYOS™ WORKBENCH - Demonstração</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            min-height: 600px;
+        }
+
+        .input-panel {
+            background: #f8f9fa;
+            padding: 30px;
+            border-right: 1px solid #e9ecef;
+        }
+
+        .output-panel {
+            background: white;
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        .mode-selector {
+            margin-bottom: 30px;
+        }
+
+        .mode-selector h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .mode-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .mode-btn {
+            padding: 12px 15px;
+            border: 2px solid #3498db;
+            background: white;
+            color: #3498db;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .mode-btn:hover {
+            background: #3498db;
+            color: white;
+        }
+
+        .mode-btn.active {
+            background: #3498db;
+            color: white;
+        }
+
+        .form-section {
+            margin-bottom: 25px;
+        }
+
+        .form-section h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            flex: 1;
+        }
+
+        .btn-primary {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2980b9;
+        }
+
+        .btn-secondary {
+            background: #95a5a6;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #7f8c8d;
+        }
+
+        .btn-success {
+            background: #27ae60;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #229954;
+        }
+
+        .output-content {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            min-height: 400px;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .output-content h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+        }
+
+        .output-content h3 {
+            color: #34495e;
+            margin: 20px 0 10px 0;
+        }
+
+        .output-content p {
+            margin-bottom: 15px;
+        }
+
+        .status-bar {
+            background: #ecf0f1;
+            padding: 15px 30px;
+            border-top: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .status {
+            color: #27ae60;
+            font-weight: 600;
+        }
+
+        .volume-info {
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            color: #3498db;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3498db;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error {
+            color: #e74c3c;
+            background: #fdf2f2;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #e74c3c;
+        }
+
+        .success {
+            color: #27ae60;
+            background: #f0f9f0;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #27ae60;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 COPYOS™ WORKBENCH</h1>
+            <p>Sistema de Copywriting com Metodologia RMBC II - Demonstração Interativa</p>
+        </div>
+
+        <div class="main-content">
+            <div class="input-panel">
+                <div class="mode-selector">
+                    <h3>🎯 Modo de Operação</h3>
+                    <div class="mode-buttons">
+                        <button class="mode-btn active" data-mode="1">Diagnóstico</button>
+                        <button class="mode-btn" data-mode="2">Criação</button>
+                        <button class="mode-btn" data-mode="3">Revisão</button>
+                        <button class="mode-btn" data-mode="4">Ajustes</button>
+                        <button class="mode-btn" data-mode="5">Estratégia</button>
+                        <button class="mode-btn" data-mode="6">Templates</button>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h4>📋 Briefing do Projeto</h4>
+                    <div class="form-group">
+                        <label for="produto">Produto/Serviço:</label>
+                        <input type="text" id="produto" placeholder="Ex: Curso de Copywriting Avançado" value="Curso de Copywriting Avançado">
+                    </div>
+                    <div class="form-group">
+                        <label for="publico">Público-Alvo:</label>
+                        <input type="text" id="publico" placeholder="Ex: Empreendedores iniciantes" value="Empreendedores que não conseguem vender online">
+                    </div>
+                    <div class="form-group">
+                        <label for="ump">Mecanismo Problema (UMP):</label>
+                        <input type="text" id="ump" placeholder="Ex: Falta de conhecimento em copywriting" value="Falta de conhecimento em copywriting persuasivo">
+                    </div>
+                    <div class="form-group">
+                        <label for="ums">Mecanismo Solução (UMS):</label>
+                        <input type="text" id="ums" placeholder="Ex: Metodologia RMBC II" value="Metodologia RMBC II de Stefan Georgi">
+                    </div>
+                    <div class="form-group">
+                        <label for="bigidea">Big Idea:</label>
+                        <input type="text" id="bigidea" placeholder="Ex: Copywriting que converte" value="Copywriting que converte sem ser agressivo">
+                    </div>
+                    <div class="form-group">
+                        <label for="preco">Preço:</label>
+                        <input type="text" id="preco" placeholder="Ex: R$ 997" value="R$ 997">
+                    </div>
+                    <div class="form-group">
+                        <label for="urgencia">Urgência:</label>
+                        <select id="urgencia">
+                            <option value="baixa">Baixa</option>
+                            <option value="media">Média</option>
+                            <option value="alta" selected>Alta</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="tipo-copy">Tipo de Copy:</label>
+                        <select id="tipo-copy">
+                            <option value="vsl">VSL (Video Sales Letter)</option>
+                            <option value="anuncio">Anúncio</option>
+                            <option value="email">Email Marketing</option>
+                            <option value="landing">Landing Page</option>
+                            <option value="webinar">Webinar</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="gerarCopy()">🚀 Gerar Copy</button>
+                    <button class="btn btn-secondary" onclick="limparFormulario()">🔄 Limpar</button>
+                    <button class="btn btn-success" onclick="exportarCopy()">📤 Exportar</button>
+                </div>
+
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <p>Processando com metodologia RMBC II...</p>
+                </div>
+            </div>
+
+            <div class="output-panel">
+                <h3>📄 Resultado do COPYOS™</h3>
+                <div class="output-content" id="output">
+                    <h2>🎯 COPYOS™ WORKBENCH</h2>
+                    <p>Selecione um modo de operação e preencha o briefing para gerar copy profissional usando a metodologia RMBC II.</p>
+                    
+                    <h3>📚 Base de Conhecimento Disponível:</h3>
+                    <p>• Volume 01: Fundamentos e Filosofia</p>
+                    <p>• Volume 02: Pesquisa e Descoberta</p>
+                    <p>• Volume 03: Mecanismos e Oferta</p>
+                    <p>• Volume 04: VSLs - Teoria e Estrutura</p>
+                    <p>• Volume 05: VSLs - Criação e Execução</p>
+                    <p>• Volume 06: Copy Meio de Funil</p>
+                    <p>• Volume 07: Copy Final de Funil</p>
+                    <p>• Volume 08: Anúncios e Tráfego</p>
+                    <p>• Volume 09: CRO e Otimização</p>
+                    
+                    <h3>🔧 Recursos Disponíveis:</h3>
+                    <p>• 40 prompts literais organizados por categoria</p>
+                    <p>• 24 modelos canônicos de copy transcritos</p>
+                    <p>• 56 estudos de caso reais com análises</p>
+                    <p>• 32 templates prontos para uso</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="status-bar">
+            <div class="status">✅ Sistema COPYOS™ Ativo</div>
+            <div class="volume-info">📚 9 Volumes Carregados | 🔧 3 Prompts Otimizados</div>
+        </div>
+    </div>
+
+    <script>
+        let modoAtivo = 1;
+        let copyGerado = '';
+
+        // Seleção de modo
+        document.querySelectorAll('.mode-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                modoAtivo = parseInt(this.dataset.mode);
+                atualizarInterface();
+            });
+        });
+
+        function atualizarInterface() {
+            const modos = {
+                1: 'Diagnóstico e Briefing',
+                2: 'Criação de Copy do Zero',
+                3: 'Revisão e Otimização',
+                4: 'Ajustes e Refatoração',
+                5: 'Consultoria Estratégica',
+                6: 'Desenvolvimento de Templates'
+            };
+            
+            document.querySelector('.status').textContent = `✅ Modo: ${modos[modoAtivo]}`;
+        }
+
+        function gerarCopy() {
+            const loading = document.getElementById('loading');
+            const output = document.getElementById('output');
+            
+            // Mostrar loading
+            loading.classList.add('show');
+            output.innerHTML = '<div class="loading"><div class="spinner"></div><p>Processando com metodologia RMBC II...</p></div>';
+
+            // Simular processamento
+            setTimeout(() => {
+                const briefing = coletarBriefing();
+                copyGerado = gerarCopyComMetodologia(briefing, modoAtivo);
+                
+                output.innerHTML = copyGerado;
+                loading.classList.remove('show');
+                
+                // Mostrar sucesso
+                const success = document.createElement('div');
+                success.className = 'success';
+                success.innerHTML = '✅ Copy gerado com sucesso usando metodologia RMBC II!';
+                output.insertBefore(success, output.firstChild);
+            }, 2000);
+        }
+
+        function coletarBriefing() {
+            return {
+                produto: document.getElementById('produto').value,
+                publico: document.getElementById('publico').value,
+                ump: document.getElementById('ump').value,
+                ums: document.getElementById('ums').value,
+                bigidea: document.getElementById('bigidea').value,
+                preco: document.getElementById('preco').value,
+                urgencia: document.getElementById('urgencia').value,
+                tipoCopy: document.getElementById('tipo-copy').value
+            };
+        }
+
+        function gerarCopyComMetodologia(briefing, modo) {
+            const modos = {
+                1: 'DIAGNÓSTICO E BRIEFING',
+                2: 'CRIAÇÃO DE COPY DO ZERO',
+                3: 'REVISÃO E OTIMIZAÇÃO',
+                4: 'AJUSTES E REFATORAÇÃO',
+                5: 'CONSULTORIA ESTRATÉGICA',
+                6: 'DESENVOLVIMENTO DE TEMPLATES'
+            };
+
+            const volumes = {
+                'vsl': 'Volume 04 (VSLs - Teoria e Estrutura) + Volume 05 (VSLs - Criação e Execução)',
+                'anuncio': 'Volume 08 (Anúncios e Tráfego)',
+                'email': 'Volume 07 (Copy Final de Funil)',
+                'landing': 'Volume 06 (Copy Meio de Funil)',
+                'webinar': 'Volume 04 (VSLs - Teoria e Estrutura)'
+            };
+
+            return `
+# 🎯 COPYOS™ - ${modos[modo]}
+
+## 📊 DIAGNÓSTICO ESTRATÉGICO (Volume 02)
+
+### 🎯 Product-Market Awareness
+**Produto:** ${briefing.produto}
+**Público-Alvo:** ${briefing.publico}
+**Mecanismo Problema (UMP):** ${briefing.ump}
+**Mecanismo Solução (UMS):** ${briefing.ums}
+**Big Idea:** ${briefing.bigidea}
+
+### 📈 Análise de Mercado
+- **Consciência do Problema:** Alta (público já identifica a dor)
+- **Consciência da Solução:** Média (conhecem copywriting, mas não RMBC II)
+- **Sofisticação:** Baixa-Média (ainda não aplicam metodologia avançada)
+
+## 🔧 ENGENHARIA DA SOLUÇÃO (Volume 03)
+
+### 🎯 UMP (Unique Mechanism Problem)
+"${briefing.ump}"
+
+### 🎯 UMS (Unique Mechanism Solution)
+"${briefing.ums}"
+
+### 💎 Estratégia de Valor Agregado
+- **Oferta Principal:** ${briefing.produto}
+- **Preço:** ${briefing.preco}
+- **Urgência:** ${briefing.urgencia}
+- **Garantia:** 30 dias ou seu dinheiro de volta
+
+## 📝 COPY GERADO (${volumes[briefing.tipoCopy]})
+
+### 🎣 HOOK (Baseado na Dor Profunda)
+"Você está perdendo ${briefing.preco} por dia porque não sabe como escrever copy que converte?"
+
+### 📖 BACKGROUND STORY
+"Eu era como você. Passava horas escrevendo copy que não vendia. Até descobrir a metodologia RMBC II de Stefan Georgi. Em 30 dias, minhas vendas aumentaram 300%."
+
+### 🔧 MECANISMO ÚNICO
+"${briefing.ums} - A única metodologia que combina pesquisa profunda, mecanismos únicos e copy que converte sem ser agressivo."
+
+### 💰 OFERTA IRRESISTÍVEL
+**${briefing.produto} - ${briefing.preco}**
+
+✅ 40 prompts literais organizados por categoria
+✅ 24 modelos canônicos de copy transcritos  
+✅ 56 estudos de caso reais com análises
+✅ 32 templates prontos para uso
+✅ Acesso vitalício + Atualizações gratuitas
+✅ Grupo VIP de suporte
+✅ Bônus: Checklist de 50 pontos para copy que converte
+
+### ⚡ URGÊNCIA E ESCASSEZ
+"Esta oferta expira em 24 horas. Após esse período, o preço volta ao normal de R$ 1.997."
+
+### 🎯 CALL TO ACTION
+"Clique no botão abaixo agora e garanta sua vaga no ${briefing.produto} antes que a oferta expire!"
+
+## 📊 MÉTRICAS DE QUALIDADE (QA Automático)
+
+### ✅ Critérios Aplicados:
+- **Citações literais:** 3+ (Volume 02, 04, 05)
+- **KPIs com fórmulas:** 5+ (Product-Market Awareness, UMP, UMS, etc.)
+- **Templates acionáveis:** 3+ (Hook, Background, Mecanismo, Oferta, CTA)
+- **Anti-exemplos:** 2+ (copy agressivo vs. persuasivo)
+- **Score:** 100/100
+
+### 📚 Volumes Referenciados:
+- Volume 02: Pesquisa e Descoberta (diagnóstico)
+- Volume 03: Mecanismos e Oferta (engenharia)
+- Volume 04: VSLs - Teoria e Estrutura (estrutura)
+- Volume 05: VSLs - Criação e Execução (execução)
+
+## 🚀 PRÓXIMOS PASSOS
+
+1. **Teste A/B** desta versão com diferentes hooks
+2. **Otimização** baseada em Volume 09 (CRO)
+3. **Escala** usando Volume 08 (Anúncios e Tráfego)
+4. **Feedback Loop** para melhorias contínuas
+
+---
+*Gerado pelo COPYOS™ usando metodologia RMBC II de Stefan Georgi*
+            `;
+        }
+
+        function limparFormulario() {
+            document.getElementById('produto').value = '';
+            document.getElementById('publico').value = '';
+            document.getElementById('ump').value = '';
+            document.getElementById('ums').value = '';
+            document.getElementById('bigidea').value = '';
+            document.getElementById('preco').value = '';
+            document.getElementById('urgencia').value = 'alta';
+            document.getElementById('tipo-copy').value = 'vsl';
+            
+            document.getElementById('output').innerHTML = `
+                <h2>🎯 COPYOS™ WORKBENCH</h2>
+                <p>Formulário limpo. Preencha novamente para gerar novo copy.</p>
+            `;
+        }
+
+        function exportarCopy() {
+            if (!copyGerado) {
+                alert('Gere um copy primeiro antes de exportar!');
+                return;
+            }
+
+            const blob = new Blob([copyGerado], { type: 'text/markdown' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'copyos-copy-gerado.md';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Inicializar
+        atualizarInterface();
+    </script>
+</body>
+</html>
