@@ -23,15 +23,15 @@ relatorio_*.json
 *.zip
 
 # Arquivos de dados brutos (muito grandes)
-04_DADOS_BRUTOS/texto_bruto/*.txt
+08_DADOS_BRUTOS/texto_bruto/*.txt
 
 # Material original (muito grande - não subir para GitHub)
-05_MATERIAL_ORIGINAL/*
-!05_MATERIAL_ORIGINAL/.gitkeep
-!05_MATERIAL_ORIGINAL/README_MATERIAL_ORIGINAL.md
+09_MATERIAL_ORIGINAL/*
+!09_MATERIAL_ORIGINAL/.gitkeep
+!09_MATERIAL_ORIGINAL/README_MATERIAL_ORIGINAL.md
 
 # Arquivos de evidências (muito grandes)
-evidencias/*.json
+05_EVIDENCIAS/*.json
 
 # Arquivos de backup
 *_backup/

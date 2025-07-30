@@ -20,11 +20,12 @@ COPYOS_FINAL/
 ├── 01_BASE_DE_CONHECIMENTO/     # Base de conhecimento estruturada
 ├── 02_PROMPTS/                  # Prompts para diferentes LLMs
 ├── 03_SCRIPTS/                  # Scripts de automação
-├── 04_DADOS_BRUTOS/             # Dados brutos (ignorados pelo Git)
-├── 05_MATERIAL_ORIGINAL/        # Material original (ignorado pelo Git)
-├── blueprints/                  # Blueprints processados
-├── evidencias/                  # Evidências extraídas
-└── qa/                         # Relatórios de QA
+├── 04_BLUEPRINTS/               # Blueprints processados
+├── 05_EVIDENCIAS/               # Evidências extraídas
+├── 06_QA/                       # Relatórios de QA
+├── 07_BACKUP_LIMPEZA/           # Backup da limpeza (temporário)
+├── 08_DADOS_BRUTOS/             # Dados brutos (ignorados pelo Git)
+└── 09_MATERIAL_ORIGINAL/        # Material original (ignorado pelo Git)
 ```
 
 ### **Arquivos de Configuração**
@@ -106,17 +107,17 @@ PROMPT_COPYOS_[PLATAFORMA]_[TIPO].md
 
 ## 📊 **Dados e Evidências**
 
-### **Blueprints (blueprints/)**
+### **Blueprints (04_BLUEPRINTS/)**
 ```
 Volume_XX.md
 ```
 
-### **Evidências (evidencias/)**
+### **Evidências (05_EVIDENCIAS/)**
 ```
 Volume_XX.json
 ```
 
-### **QA (qa/)**
+### **QA (06_QA/)**
 ```
 Volume_XX_QA.json
 ```
@@ -124,11 +125,11 @@ Volume_XX_QA.json
 ## 🚫 **Arquivos Excluídos**
 
 ### **Por .gitignore**
-- `04_DADOS_BRUTOS/` - Dados brutos (13MB)
-- `05_MATERIAL_ORIGINAL/` - Material original (776MB)
-- `evidencias/` - Evidências extraídas (7MB)
+- `08_DADOS_BRUTOS/` - Dados brutos (13MB)
+- `09_MATERIAL_ORIGINAL/` - Material original (776MB)
+- `05_EVIDENCIAS/` - Evidências extraídas (7MB)
 - `.DS_Store` - Arquivos de sistema macOS
-- `BACKUP_LIMPEZA/` - Backup temporário
+- `07_BACKUP_LIMPEZA/` - Backup temporário
 
 ### **Arquivos Removidos na Limpeza**
 - Arquivos redundantes (múltiplas versões)
