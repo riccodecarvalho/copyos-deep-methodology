@@ -1,0 +1,32 @@
+{
+  "volume": "05",
+  "timestamp_qa": "2025-07-29T23:55:36Z",
+  "metodologia": "QA Automático com Metas Rígidas",
+  "regras": {
+    "citacoes_literais": {
+      "min": 3,
+      "encontradas": 3,
+      "status": "pass"
+    },
+    "anti_exemplos": {
+      "min": 2,
+      "encontrados": 2,
+      "status": "pass"
+    },
+    "kpis": {
+      "min": 5,
+      "encontrados": 0,
+      "status": "fail"
+    },
+    "templates": {
+      "min": 3,
+      "encontrados": 3,
+      "status": "pass"
+    }
+  },
+  "status_final": "reprovado",
+  "score_qualidade": 80,
+  "lacunas_identificadas": [
+    "kpis: 0/5"
+  ]
+}
